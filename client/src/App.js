@@ -16,6 +16,9 @@ import Write from './pages/Write';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+// styles
+import './style.scss';
+
 const Layout = () => {
   return (
     <>
