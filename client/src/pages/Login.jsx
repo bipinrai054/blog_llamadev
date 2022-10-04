@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext } from '../context/authContext';
 
 export default function Login() {
   const [inputs, setInputs] = React.useState({
@@ -11,6 +12,8 @@ export default function Login() {
 
   const navigate = useNavigate();
 
+  const { login } = React.useContext(AuthContext);
+
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -18,7 +21,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/auth/login', inputs);
+      await login(inputs);
       navigate('/');
     } catch (err) {
       setErr(err.response.data);
