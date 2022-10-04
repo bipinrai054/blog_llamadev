@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function Login() {
   const [inputs, setInputs] = React.useState({
-    email: '',
+    username: '',
     password: '',
   });
   const [err, setErr] = React.useState(null);
