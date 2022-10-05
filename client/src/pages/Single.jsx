@@ -5,10 +5,10 @@ import Edit from '../img/edit.png';
 import Delete from '../img/delete.png';
 
 // react router dom
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Menu from '../components/Menu';
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -18,6 +18,7 @@ export default function Single() {
   const [post, setPost] = React.useState({});
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const postId = location.pathname.split('/')[2];
 
@@ -35,10 +36,18 @@ export default function Single() {
     fetchData();
   }, [postId]);
 
+  const handleDelete = async () => {
+    try {
+      const res = await axios.delete(`/posts/${postId}`);
+      navigate('/');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className='single'>
       <div className='content'>
-        {console.log(post)}
         <img
           // src='https://cdn.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png'
           src={post?.img}
@@ -63,7 +72,7 @@ export default function Single() {
               <Link to={`/write?edit=2`}>
                 <img src={Edit} alt='edit' />
               </Link>
-              <img src={Delete} alt='delete' />
+              <img onClick={handleDelete} src={Delete} alt='delete' />
             </div>
           )}
         </div>
