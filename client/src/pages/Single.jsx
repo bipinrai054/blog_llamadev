@@ -79,8 +79,7 @@ export default function Single() {
         <h1>{post.title}</h1>
         {post.description}
       </div>
-      {console.log(post)}
-      <Menu cat={post.cat} />
+      <Menu cat={post.cat} postId={post.id} />
     </div>
   );
 }

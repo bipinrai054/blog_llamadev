@@ -1,15 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
-export default function Menu({ cat }) {
+export default function Menu({ cat, postId }) {
   const [posts, setPosts] = React.useState([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/posts/?cat=${cat}`);
-        // setPosts(res.data.filter(d=>d.id !==));
-        console.log(cat);
+        setPosts(res.data.filter((d) => d.id !== postId));
       } catch (err) {
         console.log(err);
       }
