@@ -45,12 +45,17 @@ export default function Single() {
     }
   };
 
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent;
+  };
+
   return (
     <div className='single'>
       <div className='content'>
         <img
           // src='https://cdn.searchenginejournal.com/wp-content/uploads/2022/06/image-search-1600-x-840-px-62c6dc4ff1eee-sej-1280x720.png'
-          src={post?.img}
+          src={`../upload/${post?.img}`}
           alt='nioce'
         />
 
@@ -77,7 +82,7 @@ export default function Single() {
           )}
         </div>
         <h1>{post.title}</h1>
-        {post.description}
+        {getText(post.description)}
       </div>
       <Menu cat={post.cat} postId={post.id} />
     </div>

@@ -4,7 +4,7 @@ import React from 'react';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Write() {
   const state = useLocation().state;
@@ -13,6 +13,8 @@ export default function Write() {
   const [title, setTitle] = React.useState(state?.title || '');
   const [file, setFile] = React.useState(null);
   const [cat, setCat] = React.useState(state?.cat || '');
+
+  const navigate = useNavigate();
 
   const upload = async () => {
     try {
@@ -44,6 +46,7 @@ export default function Write() {
             img: file ? imgUrl : '',
             date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
           });
+      navigate('/');
     } catch (err) {
       console.log(err);
     }

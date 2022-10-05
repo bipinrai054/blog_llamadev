@@ -77,7 +77,7 @@ export const updatePost = (req, res) => {
     const postId = req.params.id;
 
     const q =
-      'UPDATE post SET `title`=? `description`=? `img`=? `cat`=? WHERE `id`=? AND `uid`=? ';
+      'UPDATE post SET `title`=?, `description`=?, `img`=?, `cat`=? WHERE `id`=? AND `uid`=? ';
 
     const values = [
       req.body.title,
