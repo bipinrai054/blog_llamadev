@@ -27,7 +27,7 @@ export default function Write() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const imgUrl = upload();
+    const imgUrl = await upload();
 
     try {
       state
